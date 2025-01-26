@@ -1,6 +1,10 @@
 ﻿using PRG2_Assignment;
 using System.Runtime.InteropServices;
-
+//==========================================================
+// Student Number	: s10268454
+// Student Name	: Nate Ng
+// Partner Name	: Vuong Gia Van
+//==========================================================
 string filePath = "flights.csv";
 
 StreamReader sr = new StreamReader(filePath);
