@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//==========================================================
+// Student Number	: s10268454
+// Student Name	: Nate Ng
+// Partner Name	: Vuong Gia Van
+//==========================================================
 
+//Done by Nate
 namespace PRG2_Assignment
 {
     abstract class Flight
