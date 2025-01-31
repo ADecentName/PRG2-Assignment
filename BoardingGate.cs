@@ -21,6 +21,15 @@ namespace PRG2_Assignment
         public bool supportsLWTT { get; set; }
         public Flight Flights { get; set; }
 
+        public BoardingGate(string GateName, bool DDJB, bool CFFT, bool LWTT)
+        {
+            gateName = GateName;
+            supportsCFFT = CFFT;
+            supportsDDJB = DDJB;
+            supportsLWTT = LWTT;
+        }
+
+
         public double CalculateFees()
         {
             return 1.0;

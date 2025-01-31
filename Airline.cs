@@ -18,6 +18,12 @@ namespace PRG2_Assignment
         public  string name { get; set; }
         public string code { get; set; }
         public Dictionary<string, Flight> flights {  get; set; }
+
+        public Airline(string Name, string Code)
+        {
+            name = Name;
+            code = Code;
+        }
         public bool AddFlight(Flight Flight)
         {
             return true;
@@ -32,7 +38,7 @@ namespace PRG2_Assignment
         }
         public override string ToString()
         {
-            return base.ToString();
+            return $"Name: {name}, Code: {code}";
         }
     }
 }

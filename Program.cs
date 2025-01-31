@@ -6,6 +6,44 @@ using System.Runtime.InteropServices;
 // Partner Name	: Vuong Gia Van
 //==========================================================
 
+Dictionary<string, Airline> LoadAirlines()
+{
+    string airlinesFileName = "airlines.csv";
+    StreamReader sr = new StreamReader(airlinesFileName);
+    string header = sr.ReadLine();
+    Dictionary<string, Airline> airlinesDict = new Dictionary<string, Airline>();
+    string? s;
+    while ((s = sr.ReadLine()) != null)
+    {
+        string[] parts = s.Split(',');
+        airlinesDict.Add(parts[1], new Airline(parts[0], parts[1]));
+    }
+    foreach(KeyValuePair<string,Airline> kvp in airlinesDict)
+    {
+        Console.WriteLine(kvp.Value.ToString());
+    }
+    return airlinesDict;
+}
+Dictionary<string,BoardingGate> LoadBoardingGates()
+{
+    string boardingGatesFileName = "boardinggates.csv";
+    StreamReader sr = new StreamReader (boardingGatesFileName);
+    string header = sr.ReadLine();
+    Dictionary<string, BoardingGate> boardingGatesDict = new Dictionary<string, BoardingGate>();
+    string? s;
+    while ((s = sr.ReadLine()) != null)
+    {
+        string[] parts = s.Split(',');
+        bool DDJB = Convert.ToBoolean(parts[1]);
+        bool CFFT = Convert.ToBoolean(parts[2]);
+        bool LWTT = Convert.ToBoolean(parts[3]);
+        boardingGatesDict.Add(parts[0], new BoardingGate(parts[0], DDJB, CFFT, LWTT));
+    }
+    return boardingGatesDict;
+}
+
+
+
 //Done By Nate
 string filePath = "flights.csv";
 
@@ -51,4 +89,9 @@ void LoadFlights(string fileName, Dictionary<string, Flight> flights)
             flights[flightNum] = flight;
         }
     }
+}
+
+void ListGates()
+{
+
 }
