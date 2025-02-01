@@ -5,11 +5,13 @@ using System.Runtime.InteropServices;
 // Student Name	: Nate Ng
 // Partner Name	: Vuong Gia Van
 //==========================================================
+string airlinesFileName = "airlines.csv";
+string boardingGatesFileName = "boardinggates.csv";
 //Done by Van
 //Feature 1
-Dictionary<string, Airline> LoadAirlines()
+void LoadAirlines(string airlinesFileName)
 {
-    string airlinesFileName = "airlines.csv";
+
     StreamReader sr = new StreamReader(airlinesFileName);
     string header = sr.ReadLine();
     Dictionary<string, Airline> airlinesDict = new Dictionary<string, Airline>();
@@ -23,13 +25,12 @@ Dictionary<string, Airline> LoadAirlines()
     {
         Console.WriteLine(kvp.Value.ToString());
     }
-    return airlinesDict;    
 }
 //Done by Van
 //Feature 1
-Dictionary<string,BoardingGate> LoadBoardingGates()
+void LoadBoardingGates(string boardingGatesFileName)
 {
-    string boardingGatesFileName = "boardinggates.csv";
+
     StreamReader sr = new StreamReader (boardingGatesFileName);
     string header = sr.ReadLine();
     Dictionary<string, BoardingGate> boardingGatesDict = new Dictionary<string, BoardingGate>();
@@ -42,7 +43,6 @@ Dictionary<string,BoardingGate> LoadBoardingGates()
         bool LWTT = Convert.ToBoolean(parts[3]);
         boardingGatesDict.Add(parts[0], new BoardingGate(parts[0], DDJB, CFFT, LWTT));
     }
-    return boardingGatesDict;
 }
 
 
@@ -146,7 +146,54 @@ void DisplayFlightDetails(Dictionary<string,Airline> Airlines)
 //Done by Van
 //Feature 8
 void ModifyFlightDetails(Dictionary<string, Airline> Airlines)
-=======
+
+{
+    Airline airlineSelected = SelectAirlines(Airlines);
+    DisplayFlights(airlineSelected);
+    Console.WriteLine("Choose an existing Flight to modify or delete:");
+    string flightcode = Console.ReadLine();
+    Flight flightChosen = airlineSelected.flights[flightcode];
+    Console.WriteLine("1. Modify flight");
+    Console.WriteLine("2. Delete flight");
+    Console.WriteLine("Choose an option:");
+    int opt = Convert.ToInt16(Console.ReadLine());
+    while (true)
+    {
+        if (opt == 2)
+        {
+            airlineSelected.flights.Remove(flightcode);
+            Console.WriteLine("Flight removed successfully");
+            break;
+        }
+        else if (opt == 1)
+        {
+            Console.WriteLine("1. Modify Basic Information\r\n\r\n2. Modify Status\r\n\r\n3. Modify Special Request Code\r\n\r\n4. Modify Boarding Gate");
+            Console.WriteLine("Select an option");
+            opt = Convert.ToInt16(Console.ReadLine());
+            break;
+        }
+    }
+    while (true)
+    {
+        if (opt == 1)
+        {
+            Console.Write("Enter new origin: ");
+            Console.Write("Enter new destination: ");
+            Console.Write("Enter new Expected Departure/Arrival Time (dd/mm/yyyy hh:mm): ");
+            Console.WriteLine("Flight updated!");
+            Console.WriteLine($"Flight number: {flightChosen.flightNumber}");
+            Console.WriteLine($"Airline Name: {airlineSelected}");
+            Console.WriteLine($"Origin: {flightChosen.Origin}");
+            Console.WriteLine($"Destination: {flightChosen.destination}");
+            Console.WriteLine($"Expected Departure/Arrival Time: {flightChosen.expectedTime}");
+            Console.WriteLine($"Status: {flightChosen.status}");
+            Console.WriteLine("Special request code: ");
+            Console.WriteLine("Boarding Gate: ");
+        }
+
+    }
+
+}
 //Feature 3 [ Done by Nate ]
 void displayflights(Dictionary<string, Flight> flights, Dictionary<string, string> airlines)
 {
@@ -264,53 +311,4 @@ void AssignBoardingGate(Dictionary<string, Flight> flights, Dictionary<string, B
         flights[flightNum].status = "On Time";
     }
     Console.WriteLine($"Flight {flightNum} has been assigned to Boarding Gate {boardingGateName}");
-}
-static void main()
-
-{
-    Airline airlineSelected = SelectAirlines(Airlines);
-    DisplayFlights(airlineSelected);
-    Console.WriteLine("Choose an existing Flight to modify or delete:");
-    string flightcode = Console.ReadLine();
-    Flight flightChosen = airlineSelected.flights[flightcode];
-    Console.WriteLine("1. Modify flight");
-    Console.WriteLine("2. Delete flight");
-    Console.WriteLine("Choose an option:");
-    int opt = Convert.ToInt16(Console.ReadLine());
-    while(true)
-    {
-        if (opt == 2)
-        {
-            airlineSelected.flights.Remove(flightcode);
-            Console.WriteLine("Flight removed successfully");
-            break;
-        }
-        else if (opt == 1)
-        {
-            Console.WriteLine("1. Modify Basic Information\r\n\r\n2. Modify Status\r\n\r\n3. Modify Special Request Code\r\n\r\n4. Modify Boarding Gate");
-            Console.WriteLine("Select an option");
-            opt = Convert.ToInt16(Console.ReadLine());
-            break;
-        }
-    }
-    while(true)
-    {
-        if(opt == 1)
-        {
-            Console.Write("Enter new origin: ");
-            Console.Write("Enter new destination: ");
-            Console.Write("Enter new Expected Departure/Arrival Time (dd/mm/yyyy hh:mm): ");
-            Console.WriteLine("Flight updated!");
-            Console.WriteLine($"Flight number: {flightChosen.flightNumber}");
-            Console.WriteLine($"Airline Name: {airlineSelected}");
-            Console.WriteLine($"Origin: {flightChosen.Origin}");
-            Console.WriteLine($"Destination: {flightChosen.destination}");
-            Console.WriteLine($"Expected Departure/Arrival Time: {flightChosen.expectedTime}");
-            Console.WriteLine($"Status: {flightChosen.status}");
-            Console.WriteLine("Special request code: ");
-            Console.WriteLine("Boarding Gate: ");
-        }
-
-    }
-
 }
