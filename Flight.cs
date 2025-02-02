@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 //==========================================================
-// Student Number	: s10268454
-// Student Name	: Nate Ng
-// Partner Name	: Vuong Gia Van
+// Student Number    : S10268226
+// Student Name      : Vuong Gia Van
+// Partner Name      : Nate Ng
 //==========================================================
+
 
 //Done by Nate
 namespace PRG2_Assignment
@@ -46,15 +47,18 @@ namespace PRG2_Assignment
         }
         public override string ToString()
         {
-            return base.ToString();
+            return "NORM";
         }
     }
     class LWTTFlight : Flight
     {
         public double requestFee { get; set; }
-        public LWTTFlight(double requestFee, string flightNumber, string Origin, string destination, DateTime expectedTime, string status) : base(flightNumber, Origin, destination, expectedTime, status)
+        public LWTTFlight(string flightNumber, string Origin, string destination, DateTime expectedTime, string status) : base(flightNumber, Origin, destination, expectedTime, status)
         {
-            this.requestFee = requestFee;
+        }
+        public override string ToString()
+        {
+            return "LWTTF";
         }
         public override double CalculateFees()
         {
@@ -64,7 +68,7 @@ namespace PRG2_Assignment
     class DDJBFlight : Flight
     {
         public double requestFee {  get; set; }
-        public DDJBFlight(double requestFee, string flightNumber, string Origin, string destination, DateTime expectedTime, string status) : base(flightNumber, Origin, destination, expectedTime, status)
+        public DDJBFlight(string flightNumber,string Origin, string destination, DateTime expectedTime, string status) : base(flightNumber, Origin, destination, expectedTime, status)
         {
             this.requestFee = requestFee;
         }
@@ -74,13 +78,13 @@ namespace PRG2_Assignment
         }
         public override string ToString()
         {
-            return base.ToString();
+            return "DDJB";
         }
     }
     class CFFTFlight : Flight
     {
         public double requestFee { get; set; }
-        public CFFTFlight(double requestFee, string flightNumber, string Origin, string destination, DateTime expectedTime, string status) : base(flightNumber, Origin, destination, expectedTime, status)
+        public CFFTFlight(string flightNumber, string Origin, string destination, DateTime expectedTime, string status) : base(flightNumber, Origin, destination, expectedTime, status)
         {
             this.requestFee = requestFee;
         }
@@ -90,7 +94,7 @@ namespace PRG2_Assignment
         }
         public override string ToString()
         {
-            return base.ToString();
+            return "CFFT";
         }
     }
 }

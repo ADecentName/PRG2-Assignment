@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 //==========================================================
-// Student Number	: S10268226K
-// Student Name	: Vuong Gia Van
-// Partner Name	: Nate Ng
+// Student Number    : S10268226
+// Student Name      : Vuong Gia Van
+// Partner Name      : Nate Ng
 //==========================================================
+
 
 //Done by Van
 namespace PRG2_Assignment
